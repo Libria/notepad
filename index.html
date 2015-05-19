@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="ja">
+	<meta charset="utf-8">
+
+	<title>html5で作るメモ帳</title>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+	<h1>メモ帳</h1>
+	<textarea id="memo" rows="10" cols="40" name="40"></textarea>
+	<p><input type="button" id="clear" value="消去"></p>
+
+
+	<script type="text/javascript">
+
+
+	$(function() {
+
+		/*
+		localStorage.setItem('memo', 'ほにゃらら');
+		localStorage.getItem('memo');
+		localStorage.removeItem('memo');
+		localStorage.clear();
+		- internet Explorerではいろいろ罠がある。
+		 */
+		if (localStorage.getItem('memo')) {
+			$('#memo').val(localStorage.getItem('memo'));
+		}
+
+		$('#clear').click(function() {
+			/* Act on the event */
+			$('#memo').val('');
+			localStorage.clear();
+		});
+
+		$('#memo').bind('keyup', function() {
+			/* Act on the event */
+			localStorage.setItem('memo', $('#memo').val());
+			console.log(localStorage.getItem('memo'));
+		});
+
+	});
+
+
+	</script>
+</body>
+</html>
